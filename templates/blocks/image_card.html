@@ -1,0 +1,31 @@
+<div class="d-flex flex-column">
+    <img src="{{ thumbnail_url }}" class="img-fluid rounded" alt="">
+    <div class="d-flex flex-row justify-content-between mb-2">
+        <span class="text-secondary">Character(s):</span>
+        {% if characters is None %}
+            <span class="text-secondary fw-bold">No characters specified</span>
+        {% else %}
+            <span class="text-primary fw-bold">{{ characters }}</span>
+        {% endif %}
+    </div>
+
+    <div class="d-flex flex-row justify-content-between mb-2">
+        <span class="text-secondary">Artist:</span>
+        {% if artist is None %}
+            <span class="text-secondary fw-bold">Unknown</span>
+        {% else %}
+            <span class="text-primary fw-bold">{{ artist }}</span>
+        {% endif %}
+    </div>
+
+    <div class="d-flex flex-row overflow-x-hidden mb-2">
+        <span class="text-secondary me-2">Tags:</span>
+        {% for tag in tags %}
+        	<span class="badge text-bg-info me-1">
+                {{ tag }}
+            </span>
+        {% endfor %}
+    </div>
+
+    <a class="btn btn-primary">View Image</a>
+</div>
