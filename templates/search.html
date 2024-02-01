@@ -1,1 +1,69 @@
 {% extends 'base.html' %}
+{% block content %}
+    <p class="text-center display-5">Search</p>
+    <form method="post">
+        <div class="d-flex flex-column rounded shadow border border-all p-2" style="width: 20vh">
+            <div class="overflow-y-auto" style="height: 30vh">
+                {% for tag in tags %}
+                    <div class="form-check mx-1">
+                        <input class="form-check-input" name="tag" type="checkbox" value="{{ tag.id }}" id="{{ tag.id }}">
+                        <label class="form-check-label" for="{{ tag.id }}">
+                            {{ tag.name }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr class="my-2">
+            <div class="overflow-y-auto" style="height: 30vh">
+                {% for character in characters %}
+                    <div class="form-check mx-1">
+                        <input class="form-check-input" name="character" type="radio" value="{{ character.id }}" id="{{ character.id }}">
+                        <label class="form-check-label" for="{{ character.id }}">
+                            {{ character.name }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr class="my-2">
+            <div class="overflow-y-auto" style="height: 30vh">
+                {% for artist in artists %}
+                    <div class="form-check mx-1">
+                        <input class="form-check-input" name="artist" type="radio" value="{{ artist.id }}" id="{{ artist.id }}">
+                        <label class="form-check-label" for="{{ artist.id }}">
+                            {{ artist.name }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr class="my-2">
+            <div class="form-check">
+                <input class="form-check-input" name="rating" type="checkbox" value="safe" id="safe" checked="checked">
+                <label class="form-check-label" for="safe">
+                    Safe
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="rating" type="checkbox" value="suggestive" id="suggestive">
+                <label class="form-check-label" for="suggestive">
+                    Suggestive
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="rating" type="checkbox" value="borderline" id="borderline">
+                <label class="form-check-label" for="borderline">
+                    Borderline
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="rating" type="checkbox" value="explicit" id="explicit">
+                <label class="form-check-label" for="explicit">
+                    Explicit
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+    <div>
+    
+    </div>
+{% endblock %}

@@ -1,11 +1,11 @@
 <div class="d-flex flex-column">
-    <img src="{{ thumbnail_url }}" class="img-fluid rounded" alt="">
+    <img src="{{ thumbnail_url }}" class="img-fluid rounded" alt="" style="height: 40vh">
     <div class="d-flex flex-row justify-content-between mb-2">
         <span class="text-secondary">Character(s):</span>
         {% if characters is None %}
-            <span class="text-secondary fw-bold">No characters specified</span>
+            <span class="text-secondary fw-bold text-end">No characters specified</span>
         {% else %}
-            <span class="text-primary fw-bold">{{ characters }}</span>
+            <span class="text-primary fw-bold text-end">{{ characters }}</span>
         {% endif %}
     </div>
 

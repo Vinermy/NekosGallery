@@ -43,6 +43,7 @@ def image(request: HttpRequest, id: int):
         "image": image['image_url'],
         "tags": [tag['name'] for tag in image['tags']],
         "artist": image['artist']['name'] if image['artist'] is not None else None,
+        "artist_id": image['artist']['id'] if image['artist'] is not None else -1,
         "characters": image['characters'][0]['name'] if image['characters'] else None,
     }
     return render(request, "image.html", ctx)
@@ -59,5 +60,26 @@ def character_arts(request, id):
     }
     return render(request, "blocks/character_arts.html", ctx)
 
+def artist_arts(request, id):
+    data = req.get(f"https://api.nekosapi.com/v3/images",
+                   params={
+                       "artist": [id],
+                       "limit": 10
+                   }).json()
+
+    ctx = {
+        "images": [image['sample_url'] for image in data['items']]
+    }
+    return render(request, "blocks/character_arts.html", ctx)
+
 def search(request: HttpRequest):
-    return render(request, "search.html")
+    tags = req.get("https://api.nekosapi.com/v3/images/tags").json()["items"]
+    characters = req.get("https://api.nekosapi.com/v3/characters").json()["items"]
+    artists = req.get("https://api.nekosapi.com/v3/artists").json()["items"]
+    ctx = {
+        "tags": sorted(tags, key=lambda x: x["name"]),
+        "characters": sorted(characters, key=lambda x: x["name"]),
+        "artists": sorted(artists, key=lambda x: x["name"]),
+    }
+
+    return render(request, "search.html", ctx)
