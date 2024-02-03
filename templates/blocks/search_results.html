@@ -1,0 +1,7 @@
+<div class="d-flex flex-wrap">
+    {% for image in images %}
+        <div class="rounded shadow border border-all p-1 m-2" hx-trigger="load" hx-swap="innerHTML" hx-get="image_by_id/{{ image.id }}">
+
+        </div>
+    {% endfor %}
+</div>
